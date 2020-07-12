@@ -1,0 +1,25 @@
+{
+  "name": "gaming_network",
+  "version": "1.0.0",
+  "description": "Package json for gaming social network ",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon backend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echiu2/Game_Network.git"
+  },
+  "author": "Edwin Chiu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/echiu2/Game_Network/issues"
+  },
+  "homepage": "https://github.com/echiu2/Game_Network#readme"
+}
