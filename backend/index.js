@@ -6,6 +6,7 @@ const { sync, User } = require("../database");
 
 // Allow app to parse json requests and files
 app.use(express.json());
+app.use(express.static('public'));
 
 // GET request from index.html file
 app.get("/", (req, res) => {
