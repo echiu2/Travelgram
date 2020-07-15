@@ -9,6 +9,7 @@
     "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "sequelize": "^6.3.3"
   },
   "devDependencies": {
@@ -23,9 +24,9 @@
   },
   "scripts": {
     "start": "nodemon backend",
-    "start-dev": "nodemon backend npm run build --watch",
+    "start-dev": "npm run build & npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production"
+    "build": "webpack -w --mode=development"
   },
   "repository": {
     "type": "git",

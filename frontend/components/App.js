@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import Login from "./Login";
 
 const App = () => {
-  return <div><h1>Hello World!</h1></div>;
+  return (
+    <div>
+      <Login/>
+    </div>
+  );
 };
 
 export default App;
