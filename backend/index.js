@@ -10,8 +10,14 @@ app.use(express.static('public'));
 
 // GET request from index.html file
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+  try{
+      res.sendFile(path.join(__dirname, "../index.html"));
+  }
+  catch(error){
+    console.log(error)
+  }
 });
+
 
 // sync().then(() => {
 //   // Listens to the port to allow server to run
