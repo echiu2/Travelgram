@@ -13,9 +13,13 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../index.html"));
 });
 
-sync().then(() => {
-  // Listens to the port to allow server to run
-  app.listen(port, function () {
-    console.log(`listening to ${port}`);
-  });
+// sync().then(() => {
+//   // Listens to the port to allow server to run
+//   app.listen(port, function () {
+//     console.log(`listening to ${port}`);
+//   });
+// });
+
+app.listen(port, function () {
+  console.log(`listening to ${port}`);
 });
