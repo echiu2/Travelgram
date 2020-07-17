@@ -1,16 +1,21 @@
 import React, { Component, useState } from "react";
-import ReactDOM from "react-dom";
-
+import axios from 'axios'
 const Login = () => {
   // React Hook: userName is value being changed from input text, setUserName is the function
   // that allows the change to occur, useState is reactHook inbuild function to hold states
   // (replaces using class and constructors)
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  
+  const handleSubmit = (ev) => {
+    console.log('submitting', ev)
+    ev.preventDefault()
+    axios.post('/', { username, password })
+  }
   return (
     <div>
       <h1>Login</h1>
-      <form>
+      <form onSubmit={(ev) => handleSubmit(ev)}>
         <label>
           Username:
           <input

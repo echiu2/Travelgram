@@ -19,6 +19,14 @@ const User = connection.define("user", {
     type: STRING,
     allowNull: false,
   },
+  username: {
+    type: STRING,
+    allownull: false
+  },
+  password: {
+    type: STRING,
+    allownull: false
+  }
 });
 
 // Create a sync function to seed data into the database (kind of like a dummy test)
@@ -26,9 +34,9 @@ const sync = async () => {
   // force: true; wipes out data and replaces it with new entry
   await connection.sync({ force: true });
   const [edwin, kalvin, brandon] = await Promise.all([
-    User.create({ firstname: "edwin", lastname: "chiu" }),
-    User.create({ firstname: "kalvin", lastname: "zhao" }),
-    User.create({ firstname: "brandon", lastname: "lau" }),
+    User.create({ firstname: "edwin", lastname: "chiu", username: "echiu", password: "123" }),
+    User.create({ firstname: "kalvin", lastname: "zhao", username: "kzhao", password: "123" }),
+    User.create({ firstname: "brandon", lastname: "lau", username: "blau", password: "123" }),
   ]);
 };
 
