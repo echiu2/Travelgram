@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
+let router = express.Router();
+
 
 const { sync, User } = require("../database");
 
@@ -10,9 +12,9 @@ const { sync, User } = require("../database");
 app.use(express.json());
 app.use(express.static('public'));
 
-// GET request from index.html file
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+// GET request from index.html file. This makes sure all routes not handled will be redirected to index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 app.post('/', async (req, res, next) => {
@@ -24,11 +26,15 @@ app.post('/', async (req, res, next) => {
       }
     })
     console.log(user)
+    if(user){
+      res.redirect('/home');
+    }
   }
   catch (error) {
     console.log(error)
   }
-})
+});
+
 sync().then(() => {
   // Listens to the port to allow server to run
   app.listen(port, function () {

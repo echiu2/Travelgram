@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import Login from "./Login";
+import Forms from "./Forms";
+import Home from "./Home";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 const App = () => {
   return (
     <div>
-      <Login/>
+      <Router>
+        <Switch>
+          <Route path="/" component={Forms} exact/>
+          <Route path="/home" component={Home} />
+        </Switch>
+      </Router>
     </div>
   );
 };
