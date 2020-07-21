@@ -4,7 +4,6 @@ const path = require("path");
 const port = 3000;
 let router = express.Router();
 
-
 const { sync, User } = require("../database");
 
 
@@ -25,12 +24,12 @@ app.post('/', async (req, res, next) => {
         password: req.body.password
       }
     })
-    if (user) {
+    if (user){
       res.status(200).send(user)
     }
   }
   catch (error) {
-    console.log(error)
+    console.log(error);
   }
 });
 

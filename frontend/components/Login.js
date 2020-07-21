@@ -1,6 +1,6 @@
-import React, { Component, useState } from "react";
-import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import React, { Component, useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 const Login = () => {
   // React Hook: userName is value being changed from input text, setUserName is the function
   // that allows the change to occur, useState is reactHook inbuild function to hold states
@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false)
   console.log('username', username)
+  
   const handleSubmit = async (ev) => {
     ev.preventDefault()
     const user = (await axios.post('/', { username, password })).data
@@ -16,6 +17,7 @@ const Login = () => {
       setRedirect(true)
     }
   }
+
   return redirect ? <Redirect to="/home"></Redirect> : (
     <div>
       <h1>Login</h1>
