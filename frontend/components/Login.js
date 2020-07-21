@@ -1,18 +1,27 @@
 import React, { Component, useState } from "react";
-import axios from 'axios'
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 const Login = () => {
   // React Hook: userName is value being changed from input text, setUserName is the function
   // that allows the change to occur, useState is reactHook inbuild function to hold states
   // (replaces using class and constructors)
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  
-  const handleSubmit = (ev) => {
-    console.log('submitting', ev)
-    ev.preventDefault()
-    axios.post('/', { username, password })
-  }
-  return (
+  const [redirect, setRedirect] = useState(false);
+  const handleSubmit = async (ev) => {
+    console.log("submitting", ev);
+    ev.preventDefault();
+    const user = await axios.post("/", { username, password });
+    if (user){
+      setRedirect(true);
+    }
+    console.log(redirect);
+
+  };
+  // Using states to check if we want to redirect or not. left side of ? is true, right side is false
+  return redirect ? (
+    <Redirect to="/home"></Redirect>
+  ) : (
     <div>
       <h1>Login</h1>
       <form onSubmit={(ev) => handleSubmit(ev)}>
