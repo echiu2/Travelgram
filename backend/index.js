@@ -24,6 +24,7 @@ app.post('/', async (req, res, next) => {
         password: req.body.password
       }
     })
+    console.log(user)
     if (user) {
       res.status(200).send(user)
     } else {
