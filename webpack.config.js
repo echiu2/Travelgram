@@ -5,6 +5,7 @@ module.exports = {
     "@babel/polyfill", //enable async-await
     path.join(__dirname, "frontend", "index.js"),
   ],
+
   module: {
     rules: [
       {
@@ -14,6 +15,10 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /.css$/,
+        use: ['style-loader', 'css-loader']
+      }
     ],
   },
   resolve: {
