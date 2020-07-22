@@ -9,14 +9,15 @@ const _setUser = (user) => ({
 })
 
 //thunk - dispatches an action for the reducer
-export const setUser = (username, password) => (
+export const setUser = (email, password) => (
     async (dispatch) => {
-        const user = await axios.post('/', { username, password })
+        const user = await axios.post('/', { email, password })
         if (user) {
             dispatch(_setUser(user.data))
         }
     }
 )
+
 //holds the state 
 export const userReducer = (state = [], action) => {
     switch (action.type) {

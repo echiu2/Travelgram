@@ -1,18 +1,19 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
-const SignUp = () => {
-  // React Hook: userName is value being changed from input text, setUserName is the function
+
+const SignUpForm = () => {
+  // React Hook: email is value being changed from input text, setEmail is the function
   // that allows the change to occur, useState is reactHook inbuild function to hold states
   // (replaces using class and constructors)
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (ev) => {
     console.log("submitting", ev);
     ev.preventDefault();
-    axios.post("/", { firstName, lastName, username, password });
+    axios.post("/", { firstName, lastName, email, password });
   };
   return (
     <div>
@@ -35,13 +36,13 @@ const SignUp = () => {
             // On change takes event variable and changes his value according to user input
             onChange={(event) => setLastName(event.target.value)}
           />
-          Username:
+          Email:
           <input
             type="text"
-            name="username"
-            placeholder="username"
+            name="email"
+            placeholder="email"
             // On change takes event variable and changes his value according to user input
-            onChange={(event) => setUserName(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
           />
           Password:
           <input
@@ -64,4 +65,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpForm;

@@ -19,7 +19,7 @@ const User = connection.define("user", {
     type: STRING,
     allowNull: false,
   },
-  username: {
+  email: {
     type: STRING,
     allownull: false
   },
@@ -34,9 +34,9 @@ const sync = async () => {
   // force: true; wipes out data and replaces it with new entry
   await connection.sync({ force: true });
   const [edwin, kalvin, brandon] = await Promise.all([
-    User.create({ firstname: "edwin", lastname: "chiu", username: "echiu", password: "123" }),
-    User.create({ firstname: "kalvin", lastname: "zhao", username: "kzhao", password: "123" }),
-    User.create({ firstname: "brandon", lastname: "lau", username: "blau", password: "123" }),
+    User.create({ firstname: "edwin", lastname: "chiu", email: "echiu", password: "123" }),
+    User.create({ firstname: "kalvin", lastname: "zhao", email: "kzhao", password: "123" }),
+    User.create({ firstname: "brandon", lastname: "lau", email: "blau", password: "123" }),
   ]);
 };
 
