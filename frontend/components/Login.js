@@ -1,30 +1,22 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
-const Login = () => {
+import { connect } from 'react-redux'
+import { setUser } from '../redux/user'
+import Home from './Home'
+const Login = (props) => {
   // React Hook: userName is value being changed from input text, setUserName is the function
   // that allows the change to occur, useState is reactHook inbuild function to hold states
   // (replaces using class and constructors)
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [redirect, setRedirect] = useState(false);
-  const handleSubmit = async (ev) => {
-    console.log("submitting", ev);
-    ev.preventDefault();
-    const user = await axios.post("/", { username, password });
-    if (user){
-      setRedirect(true);
-    }
-    console.log(redirect);
 
-  };
-  // Using states to check if we want to redirect or not. left side of ? is true, right side is false
-  return redirect ? (
-    <Redirect to="/home"></Redirect>
-  ) : (
+  return props.user.id ? <Redirect to="/home"></Redirect> : (
     <div>
       <h1>Login</h1>
-      <form onSubmit={(ev) => handleSubmit(ev)}>
+      <form onSubmit={(ev) => {
+        ev.preventDefault()
+        props.login(username, password)
+      }}>
         <label>
           Username:
           <input
@@ -48,4 +40,11 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapState = ({ user }) => ({
+  user
+})
+const mapDispatch = (dispatch) => ({
+  login: (username, password) => dispatch(setUser(username, password))
+})
+
+export default connect(mapState, mapDispatch)(Login);
