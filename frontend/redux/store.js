@@ -1,15 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunks from 'redux-thunk'
-
-const userReducer = (state = [], action) => {
-    switch (action.type) {
-        case LOAD_USER:
-            state = action.user;
-            break
-    }
-    return state;
-};
-
+import logger from 'redux-logger';
+import { userReducer } from '../redux/user'
 const reducer = combineReducers({
     user: userReducer
 })

@@ -24,22 +24,24 @@ app.post('/', async (req, res, next) => {
         password: req.body.password
       }
     })
-    if (user){
+    if (user) {
       res.status(200).send(user)
+    } else {
+      res.status(401).send()
     }
   }
   catch (error) {
-    console.log(error);
+    res.status(404).send("Username or Password Incorrect")
   }
 });
 
-sync().then(() => {
-  // Listens to the port to allow server to run
-  app.listen(port, function () {
-    console.log(`listening to ${port}`);
-  });
-});
-
-// app.listen(port, function () {
-//   console.log(`listening to ${port}`);
+// sync().then(() => {
+//   // Listens to the port to allow server to run
+//   app.listen(port, function () {
+//     console.log(`listening to ${port}`);
+//   });
 // });
+
+app.listen(port, function () {
+  console.log(`listening to ${port}`);
+});

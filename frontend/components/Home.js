@@ -1,11 +1,12 @@
 import React, { Component, useState } from "react";
-
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <div>
       <ul>
-      <li>
-          <a href="/">Login</a>
+        <li>
+          <Link to="/">Login</Link>
         </li>
         <li>
           <a href="/home">Home</a>
@@ -23,5 +24,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
