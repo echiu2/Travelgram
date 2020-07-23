@@ -1,11 +1,17 @@
-import React, { Component } from "react";
-import { render } from 'react-dom';
+import React from 'react'
+import { connect } from 'react-redux'
 
-const Profile = (props) => {
-  return (
-    <h1>
-        My profile Page!
-    </h1>
-  )
+const Profile = ({ user }) => {
+    console.log('user', user)
+    return (
+        <div>
+            WELCOME TO Profile
+        </div>
+    )
 }
-export default Profile;
+
+const mapstate = ({ user }) => ({
+    user
+})
+
+export default connect(mapstate, null)(Profile)

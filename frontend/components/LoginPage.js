@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignupForm"
-import { render } from 'react-dom';
 
 const LoginPage = (props) => {
   return (
@@ -11,4 +10,5 @@ const LoginPage = (props) => {
     </section>
   )
 }
+
 export default LoginPage;

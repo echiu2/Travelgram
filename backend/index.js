@@ -20,7 +20,7 @@ app.post('/', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.body.username,
+        email: req.body.email,
         password: req.body.password
       }
     })
@@ -32,7 +32,7 @@ app.post('/', async (req, res, next) => {
     }
   }
   catch (error) {
-    res.status(404).send("Username or Password Incorrect")
+    res.status(404).send("Email or Password Incorrect")
   }
 });
 
