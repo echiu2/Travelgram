@@ -11,11 +11,11 @@ const User = connection.define("user", {
     defaultValue: UUIDV4,
     allowNull: false,
   },
-  firstname: {
+  firstName: {
     type: STRING,
     allowNull: false,
   },
-  lastname: {
+  lastName: {
     type: STRING,
     allowNull: false,
   },
@@ -34,9 +34,9 @@ const sync = async () => {
   // force: true; wipes out data and replaces it with new entry
   await connection.sync({ force: true });
   const [edwin, kalvin, brandon] = await Promise.all([
-    User.create({ firstname: "edwin", lastname: "chiu", email: "echiu", password: "123" }),
-    User.create({ firstname: "kalvin", lastname: "zhao", email: "kzhao", password: "123" }),
-    User.create({ firstname: "brandon", lastname: "lau", email: "blau", password: "123" }),
+    User.create({ firstName: "edwin", lastName: "chiu", email: "echiu", password: "123" }),
+    User.create({ firstName: "kalvin", lastName: "zhao", email: "kzhao", password: "123" }),
+    User.create({ firstName: "brandon", lastName: "lau", email: "blau", password: "123" }),
   ]);
 };
 
