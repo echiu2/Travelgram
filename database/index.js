@@ -1,33 +1,8 @@
+const { Post } = require("./models/Post");
+const { User } = require("./models/User");
 // Creating connection between the app and the database (Sequelize similar to ORM)
 const Sequelize = require("sequelize");
-const { UUID, UUIDV4, STRING } = Sequelize;
 const connection = new Sequelize("postgres://localhost/game-network");
-
-// Creating table schemas for user
-const User = connection.define("user", {
-  id: {
-    primaryKey: true,
-    type: UUID,
-    defaultValue: UUIDV4,
-    allowNull: false,
-  },
-  firstname: {
-    type: STRING,
-    allowNull: false,
-  },
-  lastname: {
-    type: STRING,
-    allowNull: false,
-  },
-  email: {
-    type: STRING,
-    allownull: false
-  },
-  password: {
-    type: STRING,
-    allownull: false
-  }
-});
 
 // Create a sync function to seed data into the database (kind of like a dummy test)
 const sync = async () => {
@@ -38,6 +13,17 @@ const sync = async () => {
     User.create({ firstname: "kalvin", lastname: "zhao", email: "kzhao", password: "123" }),
     User.create({ firstname: "brandon", lastname: "lau", email: "blau", password: "123" }),
   ]);
+  try {
+    const p = await Promise.all([
+      Post.create({ caption: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."}),
+      Post.create({ caption: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."}),
+      Post.create({ caption: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."})
+    ])
+  }
+  catch(error){
+    console.log(error)
+    throw error;
+  }
 };
 
-module.exports = { sync, User };
+module.exports = { sync, User, connection};

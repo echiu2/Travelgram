@@ -4,7 +4,7 @@ const path = require("path");
 const port = 3000;
 let router = express.Router();
 
-const { sync, User } = require("../database");
+const { sync, User, Post } = require("../database");
 
 
 // Allow app to parse json requests and files
@@ -36,13 +36,13 @@ app.post('/', async (req, res, next) => {
   }
 });
 
-// sync().then(() => {
-//   // Listens to the port to allow server to run
-//   app.listen(port, function () {
-//     console.log(`listening to ${port}`);
-//   });
-// });
-
-app.listen(port, function () {
-  console.log(`listening to ${port}`);
+sync().then(() => {
+  // Listens to the port to allow server to run
+  app.listen(port, function () {
+    console.log(`listening to ${port}`);
+  });
 });
+
+// app.listen(port, function () {
+//   console.log(`listening to ${port}`);
+// });
