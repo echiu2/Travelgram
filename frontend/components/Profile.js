@@ -30,16 +30,16 @@ const Profile = ({ user }) => {
                 </div>
                 <div className="form-group">
                     <label >Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(ev) => setPassword(ev.target.value)} />
+                    <input type="password" className="form-control" id="password" placeholder="Password" onChange={(ev) => setPassword(ev.target.value)} />
                     <small className="form-text text-muted">Current Password</small>
                 </div>
                 <div className="form-group">
                     <label >New Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="New Password" onChange={(ev) => setNewPassword(ev.target.value)} />
+                    <input type="password" className="form-control" id="newPassword" placeholder="New Password" onChange={(ev) => setNewPassword(ev.target.value)} />
                 </div>
                 <div className="form-group">
                     <label >Confirm New Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Confirm New Password" onChange={(ev) => setConfirmNewPassword(ev.target.value)} />
+                    <input type="password" className="form-control" id="confirmNewPassword" placeholder="Confirm New Password" onChange={(ev) => setConfirmNewPassword(ev.target.value)} />
                 </div>
                 <button type="submit" className="btn btn-primary">Update Profile</button>
             </form>

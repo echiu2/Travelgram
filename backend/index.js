@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
-let router = express.Router();
 
 const { sync, User } = require("../database");
 
@@ -35,13 +34,13 @@ app.post('/', async (req, res, next) => {
   }
 });
 
-// sync().then(() => {
-//   // Listens to the port to allow server to run
-//   app.listen(port, function () {
-//     console.log(`listening to ${port}`);
-//   });
-// });
-
-app.listen(port, function () {
-  console.log(`listening to ${port}`);
+sync().then(() => {
+  // Listens to the port to allow server to run
+  app.listen(port, function () {
+    console.log(`listening to ${port}`);
+  });
 });
+
+// app.listen(port, function () {
+//   console.log(`listening to ${port}`);
+// });
