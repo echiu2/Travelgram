@@ -1,6 +1,6 @@
-const { connection } = require("../index")
+const connection = require("../connection")
 const Sequelize = require("sequelize");
-const { UUID, UUIDV4, TEXT} = Sequelize;
+const { UUID, UUIDV4, TEXT } = Sequelize;
 
 const Post = connection.define("post", {
     id: {
@@ -12,7 +12,7 @@ const Post = connection.define("post", {
     caption: {
         type: TEXT('MEDIUM'),
         allowNUll: false,
-    } 
+    }
 });
 
 

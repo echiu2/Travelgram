@@ -4,9 +4,8 @@ const path = require("path");
 const port = 3000;
 let router = express.Router();
 
-const { sync, User, Post } = require("../database");
-
-
+const { User, Post } = require('../database/models/index')
+const sync = require('../seed')
 // Allow app to parse json requests and files
 app.use(express.json());
 app.use(express.static('public'));
