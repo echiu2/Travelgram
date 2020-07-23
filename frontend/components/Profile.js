@@ -5,7 +5,9 @@ const Profile = ({ user }) => {
     console.log('user', user)
     return (
         <div>
-            WELCOME TO Profile
+            <h1>
+              Welcome to Profile!
+            </h1>
         </div>
     )
 }

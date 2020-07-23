@@ -11,8 +11,9 @@ import MyNavbar from "./MyNavbar"
 const App = () => {
   return (
     <div>
-      <MyNavbar />
       <Router>
+              <MyNavbar />
+
         <Switch>
           <Route path="/" component={LoginPage} exact />
           <Route path="/home" component={Home} />
