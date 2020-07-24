@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import Axios from 'axios';
 
 const Profile = ({ user }) => {
     console.log('user', user)
@@ -9,10 +10,14 @@ const Profile = ({ user }) => {
     const [password, setPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+    const handleSubmit = () => {
+        Axios.get('/profile')
+    }
     return user.id ? (
         <div>
             <h1>Update Profile</h1>
-            <form>
+            <form onSubmit={() => handleSubmit}>
                 <div className="form-group">
                     <label>First Name</label>
                     <input type="name" className="form-control" aria-describedby="emailHelp" value={`${firstName}`} onChange={(ev) => setFirstName(ev.target.value)} />

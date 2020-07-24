@@ -2,19 +2,17 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
-
-const { sync, User } = require("../database");
-
-
+const sync = require('../seed')
+const { User, Post } = require('../database/models/index')
 // Allow app to parse json requests and files
 app.use(express.json());
 app.use(express.static('public'));
 
 // GET request from index.html file. This makes sure all routes not handled will be redirected to index.html
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
-
+app.use('/profile', require('./API/profile'))
 app.post('/', async (req, res, next) => {
   try {
     const user = await User.findOne({
@@ -34,13 +32,13 @@ app.post('/', async (req, res, next) => {
   }
 });
 
-sync().then(() => {
-  // Listens to the port to allow server to run
-  app.listen(port, function () {
-    console.log(`listening to ${port}`);
-  });
-});
-
-// app.listen(port, function () {
-//   console.log(`listening to ${port}`);
+// sync().then(() => {
+//   // Listens to the port to allow server to run
+//   app.listen(port, function () {
+//     console.log(`listening to ${port}`);
+//   });
 // });
+
+app.listen(port, function () {
+  console.log(`listening to ${port}`);
+});
