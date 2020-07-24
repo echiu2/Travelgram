@@ -11,13 +11,15 @@ const Profile = ({ user }) => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
-    const handleSubmit = () => {
-        Axios.get('/profile')
-    }
+
     return user.id ? (
         <div>
             <h1>Update Profile</h1>
-            <form onSubmit={() => handleSubmit}>
+            <form onSubmit={async (ev) => {
+                ev.preventDefault()
+                const profile = await Axios.get('/api/profile')
+                console.log('profile', profile)
+            }}>
                 <div className="form-group">
                     <label>First Name</label>
                     <input type="name" className="form-control" aria-describedby="emailHelp" value={`${firstName}`} onChange={(ev) => setFirstName(ev.target.value)} />
