@@ -3,33 +3,16 @@ const app = express();
 const path = require("path");
 const port = 3000;
 const sync = require('../seed')
-const { User, Post } = require('../database/models/index')
 // Allow app to parse json requests and files
 app.use(express.json());
 app.use(express.static('public'));
 
+//this is middleware, any requests that go to /api will hit this router.
+app.use('/api', require('./api'))
+
 // GET request from index.html file. This makes sure all routes not handled will be redirected to index.html
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
-});
-app.use('/profile', require('./API/profile'))
-app.post('/', async (req, res, next) => {
-  try {
-    const user = await User.findOne({
-      where: {
-        email: req.body.email,
-        password: req.body.password
-      }
-    })
-    if (user) {
-      res.status(200).send(user)
-    } else {
-      res.status(401).send()
-    }
-  }
-  catch (error) {
-    res.status(404).send("Email or Password Incorrect")
-  }
 });
 
 // sync().then(() => {
