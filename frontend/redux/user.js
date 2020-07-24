@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 const SET_USER = 'SET_USER'
-
 //action creator - always plain objects - reducers only listen to actions
 const _setUser = (user) => ({
     type: SET_USER,
