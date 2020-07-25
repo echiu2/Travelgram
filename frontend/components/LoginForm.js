@@ -9,7 +9,7 @@ const LoginForm = (props) => {
   // (replaces using class and constructors)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  console.log(props)
   return props.user.id ? <Redirect to="/home"></Redirect> : (
     <div>
       <h1>Login</h1>
