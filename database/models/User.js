@@ -1,6 +1,7 @@
-const connection = require("../connection")
+const connection = require("../connection");
 const Sequelize = require("sequelize");
 const { UUID, UUIDV4, STRING } = Sequelize;
+// const { Post, associate } = require("./Post");
 
 // Creating table schemas for user
 const User = connection.define("user", {
@@ -20,12 +21,20 @@ const User = connection.define("user", {
   },
   email: {
     type: STRING,
-    allownull: false
+    allownull: false,
   },
   password: {
     type: STRING,
-    allownull: false
-  }
+    allownull: false,
+  },
 });
+
+// // user can have many posts
+User.associate = (models) => {
+  User.hasMany(models.Post, {
+    foreignKey: "user_id",
+    as: "post",
+  });
+};
 
 module.exports = User;
