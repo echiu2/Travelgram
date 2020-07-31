@@ -25,9 +25,10 @@ export const homePost = () => (
   }
 )
 
-export const createPost = (create_post) => (
+export const createPost = (newPost) => (
   async (dispatch) => {
-    const new_post = await axios.post('/api/post', {create_post})
+    const new_post = await axios.post('/api/post', {caption: newPost})
+    console.log('new_post',new_post)
     if (new_post){
       dispatch(_createPost(new_post.data))
     }
@@ -38,7 +39,7 @@ export const createPost = (create_post) => (
 export const postReducer = (state = [], action) => {
   switch (action.type) {
     case CREATE_POST:
-      return state = [...state, action.post]
+      return [...state, action.post]
     case HOME_POST:
       state = action.post;
     default:
