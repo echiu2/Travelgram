@@ -35,6 +35,12 @@ const Home = (props) => {
           </form>
           {props.post.map((option, i) => (
             <div className="card" key={i}>
+              <div className="card-header">
+                <p className="card-text">
+                  {console.log(option)}
+                  {option.user.firstName + " " + option.user.lastName}
+                </p>
+              </div>
               <div className="card-body">
                 <p className="card-text">{option.caption}</p>
               </div>
