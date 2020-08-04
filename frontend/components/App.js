@@ -7,7 +7,7 @@ import { homePost } from "../redux/post";
 
 //components
 import Home from "./Home";
-import Profile from "./Profile";
+import { Profile } from "./Profile";
 import LoginPage from "./LoginPage";
 import MyNavbar from "./MyNavbar";
 
@@ -28,7 +28,7 @@ const App = (props) => {
   // }
 
 
-  return  (
+  return (
     <div>
       <Router>
         <MyNavbar />

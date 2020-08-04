@@ -17,20 +17,18 @@ const _createPost = (post) => ({
 //thunk - dispatches an action for the reducer
 export const homePost = () => (
   async (dispatch) => {
-      const post = await axios.get('/api/post')
-      console.log(post)
-      if (post) {
-          dispatch(_homePost(post.data))
-      }
+    const post = await axios.get('/api/post')
+    if (post) {
+      dispatch(_homePost(post.data))
+    }
   }
 )
 
 export const createPost = (newPost) => (
   async (dispatch) => {
-    const new_post = await axios.post('/api/post', {caption: newPost})
-    console.log('new_post',new_post)
-    if (new_post){
-      dispatch(_createPost(new_post.data))
+    const new_post = (await axios.post('/api/post', { caption: newPost })).data
+    if (new_post) {
+      dispatch(_createPost(new_post))
     }
   }
 )

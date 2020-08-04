@@ -1,62 +1,15 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import Axios from 'axios';
+import React from 'react'
 
-const Profile = ({ user }) => {
-    console.log('user', user)
-    
-    const [firstName, setFirstName] = useState(`${user.firstName}`);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [email, setEmail] = useState(`${user.email}`);
-    const [password, setPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmNewPassword, setConfirmNewPassword] = useState('');
-
-
-    return user.id ? (
-        <div>
-            <h1>Update Profile</h1>
-            <form onSubmit={async (ev) => {
-                ev.preventDefault()
-                const profile = await Axios.get('/api/profile')
-                console.log('profile', profile)
-            }}>
-                <div className="form-group">
-                    <label>First Name</label>
-                    <input type="name" className="form-control" aria-describedby="emailHelp" value={`${firstName}`} onChange={(ev) => setFirstName(ev.target.value)} />
-                    <small className="form-text text-muted">Update First Name.</small>
-                </div>
-                <div className="form-group">
-                    <label>Last Name</label>
-                    <input type="name" className="form-control" value={`${lastName}`} onChange={(ev) => setLastName(ev.target.value)} />
-                    <small className="form-text text-muted">Update Last Name.</small>
-                </div>
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" aria-describedby="emailHelp" value={`${email}`} onChange={(ev) => setEmail(ev.target.value)} />
-                    <small className="form-text text-muted">Update email address.</small>
-                </div>
-                <div className="form-group">
-                    <label >Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password" onChange={(ev) => setPassword(ev.target.value)} />
-                    <small className="form-text text-muted">Current Password</small>
-                </div>
-                <div className="form-group">
-                    <label >New Password</label>
-                    <input type="password" className="form-control" id="newPassword" placeholder="New Password" onChange={(ev) => setNewPassword(ev.target.value)} />
-                </div>
-                <div className="form-group">
-                    <label >Confirm New Password</label>
-                    <input type="password" className="form-control" id="confirmNewPassword" placeholder="Confirm New Password" onChange={(ev) => setConfirmNewPassword(ev.target.value)} />
-                </div>
-                <button type="submit" className="btn btn-primary">Update Profile</button>
-            </form>
+export const Profile = () => {
+    return (
+        <div className="card" style={{ width: '18rem' }}>
+            <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" className="card-link">Card link</a>
+                <a href="#" className="card-link">Another link</a>
+            </div>
         </div>
-    ) : <h2>Please log in or create an account.</h2>
+    )
 }
-
-const mapstate = ({ user }) => ({
-    user
-})
-
-export default connect(mapstate, null)(Profile)

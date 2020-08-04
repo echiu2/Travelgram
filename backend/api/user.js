@@ -21,4 +21,30 @@ router.post('/', async (req, res, next) => {
     }
 });
 
+router.put('/', async (req, res, next) => {
+    try {
+        const { firstName, lastName, email, password, newPassword, confirmNewPassword } = req.body
+        const user = await User.findOne({
+            where: {
+                email: req.body.user.email,
+            }
+        })
+        if (password === req.body.user.password) {
+            if (newPassword === confirmNewPassword) {
+                user.update({
+                    firstName, lastName, email, password: newPassword
+                })
+            } else {
+                throw new Error('new passwords do not match')
+            }
+        } else {
+            res.status(401).send('incorrect password')
+        }
+
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
 module.exports = router

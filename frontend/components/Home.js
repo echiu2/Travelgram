@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { createPost, homePost } from "../redux/post";
 
-const Home = (props) => {
+const Home = ({ post, create }) => {
   const [caption, setCaption] = useState("");
-
-  return props.post.length > 0 ? (
+  return post.length > 0 ? (
     <div className="container-fluid gedf-wrapper">
       <h1>
         <center>Newsfeed</center>
@@ -17,7 +16,7 @@ const Home = (props) => {
           <form
             onSubmit={(ev) => {
               ev.preventDefault();
-              props.create(caption);
+              create(caption);
             }}
           >
             <label>
@@ -33,11 +32,10 @@ const Home = (props) => {
               <input className="btn-block" type="submit" value="Post" />
             </label>
           </form>
-          {props.post.map((option, i) => (
+          {post.map((option, i) => (
             <div className="card" key={i}>
               <div className="card-header">
                 <p className="card-text">
-                  {console.log(option)}
                   {option.user.firstName + " " + option.user.lastName}
                 </p>
               </div>
@@ -61,8 +59,8 @@ const Home = (props) => {
       </div>
     </div>
   ) : (
-    <h1> No Post! </h1>
-  );
+      <h1> No Post! </h1>
+    );
 };
 //connect to store
 //grab posts from store

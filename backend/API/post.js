@@ -22,14 +22,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
-  try {
-    const newPost = await Post.create({ caption: req.body.caption });
-    console.log("newPost", newPost);
-    res.status(201).send(newPost);
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.post('/', async (req, res, next) => {
+    try {
+        const newPost = await Post.create({ caption: req.body.caption })
+        res.status(201).send(newPost)
+    }
+    catch (error) {
+        console.log(error)
+    }
+})
 
 module.exports = router;
