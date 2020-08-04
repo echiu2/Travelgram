@@ -7,10 +7,11 @@ router.get("/", async (req, res, next) => {
     const post = await Post.findAll({
       include: [
         {
-          model: User
+          model: User,
         },
       ],
     });
+    console.log("post", post);
     if (post) {
       res.status(200).send(post);
     } else {
