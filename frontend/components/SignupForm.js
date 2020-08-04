@@ -10,10 +10,10 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = async (ev) => {
     console.log("submitting", ev);
     ev.preventDefault();
-    axios.post("/", { firstName, lastName, email, password });
+    await axios.post("/api/signup", { firstName, lastName, email, password });
   };
   return (
     <div>
@@ -23,7 +23,7 @@ const SignUpForm = () => {
           First Name:
           <input
             type="text"
-            name="firsname"
+            name="firstName"
             placeholder="first name"
             // On change takes event variable and changes his value according to user input
             onChange={(event) => setFirstName(event.target.value)}
@@ -31,7 +31,7 @@ const SignUpForm = () => {
           Last Name:
           <input
             type="text"
-            name="lastname"
+            name="lastName"
             placeholder="last name"
             // On change takes event variable and changes his value according to user input
             onChange={(event) => setLastName(event.target.value)}
