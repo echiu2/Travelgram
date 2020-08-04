@@ -6,6 +6,7 @@ router.get('/', async (req, res, next) => {
     try {
         const posts = await Post.findAll()
         res.send(posts)
+        console.log(posts)
     }
     catch (e) {
         console.log(e)

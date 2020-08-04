@@ -1,6 +1,6 @@
-# Game_Network
+# Travelgram
 A social network for gaming.
 
-Goals:
-Week 1: 
-Setup and User Validation/Authentication and Login 
+Goals:<br />
+-Week 1: <br />
+-Setup and User Validation/Authentication and Login 

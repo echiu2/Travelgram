@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const port = 3000;
 const sync = require('../seed')
+const router = express.Router();
+
 // Allow app to parse json requests and files
 app.use(express.json());
 app.use(express.static('public'));
