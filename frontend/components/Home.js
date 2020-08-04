@@ -26,13 +26,19 @@ const Home = ({ post, create }) => {
                 placeholder="What's on your mind?"
                 rows="6"
                 cols="83"
+                style={{ resize: "none" }}
                 onChange={(event) => setCaption(event.target.value)}
               ></textarea>
+              <input className="btn-block" type="submit" value="Post" />
             </label>
-            <input type="submit" value="Submit" />
           </form>
           {post.map((option, i) => (
             <div className="card" key={i}>
+              <div className="card-header">
+                <p className="card-text">
+                  {option.user.firstName + " " + option.user.lastName}
+                </p>
+              </div>
               <div className="card-body">
                 <p className="card-text">{option.caption}</p>
               </div>

@@ -1,19 +1,24 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { Post } = require('../../database/models/index');
+const { Post, User } = require("../../database/models/index");
 
-router.get('/', async (req, res, next) => {
-    try {
-        const post = await Post.findAll()
-        if (post) {
-            res.status(200).send(post)
-        } else {
-            res.status(401).send()
-        }
+router.get("/", async (req, res, next) => {
+  try {
+    const post = await Post.findAll({
+      include: [
+        {
+          model: User
+        },
+      ],
+    });
+    if (post) {
+      res.status(200).send(post);
+    } else {
+      res.status(401).send();
     }
-    catch (error) {
-        res.status(404).send("No Posts")
-    }
+  } catch (error) {
+    res.status(404).send("No Posts");
+  }
 });
 
 router.post('/', async (req, res, next) => {
@@ -26,4 +31,4 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-module.exports = router
+module.exports = router;
