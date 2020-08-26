@@ -17,7 +17,8 @@ const _createPost = (post) => ({
 //thunk - dispatches an action for the reducer
 export const homePost = () => (
   async (dispatch) => {
-    const post = await axios.get('/api/post')
+    
+    const post = await axios.get('/api/post',{Authorization: 'bearer'})
     if (post) {
       dispatch(_homePost(post.data))
     }

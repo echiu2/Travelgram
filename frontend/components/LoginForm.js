@@ -10,15 +10,19 @@ const LoginForm = (props) => {
   // (replaces using class and constructors)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(props)
-  return props.user.id ? <Redirect to="/home"></Redirect> :(
+  return props.user.id ? <Redirect to="/home"></Redirect> : (
     <div>
       <h1>Login</h1>
-      <form onSubmit = { async (ev) => {
+      <form onSubmit={async (ev) => {
         ev.preventDefault()
-        const token = (await axios.post('/api/auth', {email, password})).data
-        window.localStorage.setItem('token', token)
+
+        const options = {
+          headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxZjViZDNiLWU3NjMtNDU3Mi1iM2RmLWUyZGM2MzIxZWQxNiIsImlhdCI6MTU5ODQ3NjY3MH0.tu05xY6kc5JmKKYMQ3dbGpAZmQ0DJPTZ_nXnJM0DVUY' }
+        }
         
+        const token = (await axios.post('/api/auth', { email, password }, options)).data
+        window.localStorage.setItem('token', token)
+
         props.login(email, password)
       }}>
         <label>
