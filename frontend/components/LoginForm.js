@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { setUser } from '../redux/user'
+import axios from "axios";
 
 const LoginForm = (props) => {
   // React Hook: userName is value being changed from input text, setUserName is the function
@@ -9,11 +10,15 @@ const LoginForm = (props) => {
   // (replaces using class and constructors)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  return props.user.id ? <Redirect to="/home"></Redirect> : (
+  console.log(props)
+  return props.user.id ? <Redirect to="/home"></Redirect> :(
     <div>
       <h1>Login</h1>
-      <form onSubmit={(ev) => {
+      <form onSubmit = { async (ev) => {
         ev.preventDefault()
+        const token = (await axios.post('/api/auth', {email, password})).data
+        window.localStorage.setItem('token', token)
+        
         props.login(email, password)
       }}>
         <label>
@@ -47,3 +52,5 @@ const mapDispatch = (dispatch) => ({
 })
 
 export default connect(mapState, mapDispatch)(LoginForm);
+
+// export default LoginForm;

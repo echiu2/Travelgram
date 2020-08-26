@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
         },
       ],
     });
-    console.log("post", post);
+    // console.log("post", post);
     if (post) {
       res.status(200).send(post);
     } else {

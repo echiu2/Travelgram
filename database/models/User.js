@@ -37,4 +37,13 @@ User.associate = (models) => {
   });
 };
 
+// const authentication = async({ email, password }) => {
+//   const user = await User.findOne({
+//     where: {
+//         email,
+//         password
+//     }
+//   })
+// }
+
 module.exports = User;

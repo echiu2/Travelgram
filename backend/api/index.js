@@ -6,6 +6,7 @@ router.use(express.json());
 router.use('/profile', require('./profile'));
 router.use('/user', require('./user'));
 router.use('/post', require("./post"));
-router.use('/signup', require("./signup"))
+router.use('/signup', require("./signup"));
+router.use('/auth', require("./auth/authentication"))
 
 module.exports = router
