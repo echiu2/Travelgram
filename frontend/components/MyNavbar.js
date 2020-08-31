@@ -32,7 +32,7 @@ const MyNavBar = (props) => {
             <a className="nav-link disabled" href="/">Disabled</a>
           </li>
           <li className="nav-item">
-            <button onClick={window.localStorage.removeItem('token')}>Log Out</button>
+            <button onClick={()=>window.localStorage.removeItem('token')}>Log Out</button>
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
