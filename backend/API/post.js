@@ -1,17 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const { Post, User } = require("../../database/models/index");
+const jwt = require('jsonwebtoken')
+const { authenticateToken } = require('../../utils')
 
-router.get("/", async (req, res, next) => {
+router.get("/", authenticateToken, async (req, res, next) => {
   try {
+    console.log('userId', req.userId)
     const post = await Post.findAll({
-      include: [
-        {
-          model: User,
-        },
-      ],
+      where: { userId: req.userId.id },
+      include: [{
+        model: User
+      }]
     });
-    // console.log("post", post);
     if (post) {
       res.status(200).send(post);
     } else {
@@ -23,13 +24,13 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-    try {
-        const newPost = await Post.create({ caption: req.body.caption })
-        res.status(201).send(newPost)
-    }
-    catch (error) {
-        console.log(error)
-    }
+  try {
+    const newPost = await Post.create({ caption: req.body.caption })
+    res.status(201).send(newPost)
+  }
+  catch (error) {
+    console.log(error)
+  }
 })
 
 module.exports = router;

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Axios from 'axios';
 
 const Profile = ({ user }) => {
-    console.log('user', user)
     const [firstName, setFirstName] = useState(`${user.firstName}`);
     const [lastName, setLastName] = useState(user.lastName);
     const [email, setEmail] = useState(`${user.email}`);

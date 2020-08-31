@@ -10,7 +10,6 @@ router.post('/', async (req, res, next) => {
             email: req.body.email,
             password: req.body.password
         });
-        console.log('user', user)
         res.status(201).send(user)
     }
     catch (error) {

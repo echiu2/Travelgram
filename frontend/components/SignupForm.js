@@ -11,7 +11,6 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (ev) => {
-    console.log("submitting", ev);
     ev.preventDefault();
     await axios.post("/api/signup", { firstName, lastName, email, password });
   };

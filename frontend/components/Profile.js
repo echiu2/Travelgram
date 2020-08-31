@@ -5,7 +5,7 @@ import { createPost, homePost } from "../redux/post";
 
 const Profile = ({ post, create }) => {
   const [caption, setCaption] = useState("");
-  return post.length > 0 ? (
+  return (
     <div className="container-fluid gedf-wrapper">
       <div className="row">
         <div className="col-md-2"></div>
@@ -109,9 +109,8 @@ const Profile = ({ post, create }) => {
         </div>
       </div>
     </div>
-  ) : (
-    <h1> No Post! </h1>
-  );
+  )
+
 };
 //connect to store
 //grab posts from store

@@ -3,27 +3,26 @@ import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { setUser } from '../redux/user'
 import axios from "axios";
-
+import { useHistory } from "react-router-dom"
 const LoginForm = (props) => {
   // React Hook: userName is value being changed from input text, setUserName is the function
   // that allows the change to occur, useState is reactHook inbuild function to hold states
   // (replaces using class and constructors)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  return props.user.id ? <Redirect to="/home"></Redirect> : (
+  const history = useHistory()
+  return (
     <div>
       <h1>Login</h1>
       <form onSubmit={async (ev) => {
         ev.preventDefault()
-
         const options = {
-          headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxZjViZDNiLWU3NjMtNDU3Mi1iM2RmLWUyZGM2MzIxZWQxNiIsImlhdCI6MTU5ODQ3NjY3MH0.tu05xY6kc5JmKKYMQ3dbGpAZmQ0DJPTZ_nXnJM0DVUY' }
+          headers: { 'Authorization': `Bearer ${window.localStorage.getItem('token')}` }
         }
-        
         const token = (await axios.post('/api/auth', { email, password }, options)).data
         window.localStorage.setItem('token', token)
-
-        props.login(email, password)
+        history.push('/home')
+        //props.login(email, password)
       }}>
         <label>
           Email:

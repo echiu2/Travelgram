@@ -14,7 +14,8 @@ import MyNavbar from "./MyNavbar";
 const App = (props) => {
   useEffect(() => {
     const x = () => {
-      props.load();
+      const token = window.localStorage.getItem('token')
+      props.load(token);
       // if (props.post.length == 1){
       //   setCaption(props.post[0].caption)
       // }
@@ -45,7 +46,7 @@ const App = (props) => {
 
 
 const mapDispatch = (dispatch) => ({
-  load: () => dispatch(homePost()),
+  load: (token) => dispatch(homePost(token)),
 });
 
 export default connect(null, mapDispatch)(App);
