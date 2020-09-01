@@ -109,8 +109,7 @@ const Profile = ({ post, create }) => {
         </div>
       </div>
     </div>
-  )
-
+  );
 };
 //connect to store
 //grab posts from store

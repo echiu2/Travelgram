@@ -5,6 +5,7 @@ import { createPost, homePost } from "../redux/post";
 
 const Home = ({ post, create }) => {
   const [caption, setCaption] = useState("");
+
   console.log(window.localStorage.getItem('token'))
   return (
     <div className="container-fluid gedf-wrapper">

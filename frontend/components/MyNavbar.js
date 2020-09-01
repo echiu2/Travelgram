@@ -1,12 +1,16 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 
 const MyNavBar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="/">
+      { window.localStorage.getItem("token") != null ?
+      <a className="navbar-brand" href="/Home">
         Navbar
-      </a>
+      </a> : 
+      <a className="navbar-brand">
+        Navbar
+      </a>}
       <button
         className="navbar-toggler"
         type="button"
@@ -61,13 +65,15 @@ const MyNavBar = (props) => {
               Disabled
             </a>
           </li>
+          { window.localStorage.getItem("token") != null ?
           <li className="nav-item">
-            <Link to="/">
-              <button onClick={() => window.localStorage.removeItem("token")}>
+            <Link className="nav-link" onClick={() => {
+              window.localStorage.removeItem("token");
+              window.location = "/"
+            }}>
                 Log Out
-              </button>
             </Link>
-          </li>
+          </li> : null }
         </ul>
         <form className="form-inline my-2 my-lg-0">
           <input

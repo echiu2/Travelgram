@@ -24,7 +24,6 @@ const App = (props) => {
     <div>
       <Router>
         <MyNavbar />
-        {/* <h1>{`${caption}`}</h1> */}
         <Switch>
           <Route path="/" component={LoginPage} exact />
           <Route path="/home" component={Home} />
