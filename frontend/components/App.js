@@ -14,20 +14,11 @@ import MyNavbar from "./MyNavbar";
 const App = (props) => {
   useEffect(() => {
     const x = () => {
-      const token = window.localStorage.getItem('token')
+      const token = window.localStorage.getItem("token");
       props.load(token);
-      // if (props.post.length == 1){
-      //   setCaption(props.post[0].caption)
-      // }
     };
     x();
   }, []);
-
-  // let data = props.post[0];
-  // if (props.post.length == 1) {
-  //   setCaption(data.caption)
-  // }
-
 
   return (
     <div>
@@ -41,9 +32,8 @@ const App = (props) => {
         </Switch>
       </Router>
     </div>
-  )
+  );
 };
-
 
 const mapDispatch = (dispatch) => ({
   load: (token) => dispatch(homePost(token)),

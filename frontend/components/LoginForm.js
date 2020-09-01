@@ -10,19 +10,20 @@ const LoginForm = (props) => {
   // (replaces using class and constructors)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory()
+  // let history = useHistory()
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={async (ev) => {
+      <form onSubmit={async  (ev) => {
         ev.preventDefault()
         const options = {
           headers: { 'Authorization': `Bearer ${window.localStorage.getItem('token')}` }
         }
         const token = (await axios.post('/api/auth', { email, password }, options)).data
         window.localStorage.setItem('token', token)
-        history.push('/home')
-        //props.login(email, password)
+        window.location = "/home"
+        // history.push('/home')
+        // props.login(email, password)
       }}>
         <label>
           Email:
