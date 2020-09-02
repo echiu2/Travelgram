@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { createPost, homePost } from "../redux/post";
-const fs = require('fs')
-const dotenv = require('dotenv')
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
 
 const Profile = ({ post, create }) => {
   const [caption, setCaption] = useState("");
-  console.log(dotenv)
-  // const userId = jwt.verify(window.localStorage.getItem('token'), process.env.JWT_KEY)
-  // console.log(userId)
+  const { id } = jwt.verify(window.localStorage.getItem('token'), process.env.JWT_KEY)
+  const filteredPosts = post.filter(eachPost => eachPost.userId === id)
+
   return (
     <div className="container-fluid gedf-wrapper">
       <div className="row">
@@ -89,7 +87,7 @@ const Profile = ({ post, create }) => {
               <input className="btn-block" type="submit" value="Post" />
             </label>
           </form>
-          {post.map((option, i) => (
+          {filteredPosts.map((option, i) => (
             <div className="card" key={i}>
               <div className="card-header">
                 <p className="card-text">
@@ -122,9 +120,6 @@ const Profile = ({ post, create }) => {
 //map through props to display each post
 
 const mapstate = ({ post }) => {
-  const filteredPosts = post.filter(eachPost => {
-    console.log(eachPost)
-  })
   return { post }
 };
 
