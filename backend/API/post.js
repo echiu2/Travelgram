@@ -25,12 +25,20 @@ router.get("/", authenticateToken, async (req, res, next) => {
 
 router.post("/", authenticateToken, async (req, res, next) => {
   try {
-    console.log(req.userId)
     const newPost = await Post.create({
       userId: req.userId.id,
       caption: req.body.caption,
-    });
-    res.status(201).send(newPost);
+    })
+
+    const createdPost = await Post.findOne({
+      where: {
+        id: newPost.id
+      },
+      include: User
+    })
+    
+    res.status(201).send(createdPost)
+
   } catch (error) {
     console.log(error);
   }
