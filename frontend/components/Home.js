@@ -5,7 +5,8 @@ import { createPost, homePost } from "../redux/post";
 
 const Home = ({ post, create }) => {
   const [caption, setCaption] = useState("");
-
+  const token = window.localStorage.getItem("token")
+  console.log(post)
   return (
     <div className="container-fluid gedf-wrapper">
       <h1>
@@ -17,7 +18,12 @@ const Home = ({ post, create }) => {
           <form
             onSubmit={(ev) => {
               ev.preventDefault();
-              create(caption);
+              const options = {
+                headers: {
+                  Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                },
+              };
+              create(caption, options);
             }}
           >
             <label>
@@ -70,7 +76,7 @@ const mapstate = ({ post }) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  create: (caption) => dispatch(createPost(caption)),
+  create: (caption, options) => dispatch(createPost(caption, options)),
 });
 
 export default connect(mapstate, mapDispatch)(Home);

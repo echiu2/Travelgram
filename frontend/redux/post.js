@@ -27,9 +27,9 @@ export const homePost = (token) => (
   }
 )
 
-export const createPost = (newPost) => (
+export const createPost = (newPost, options) => (
   async (dispatch) => {
-    const new_post = (await axios.post('/api/post', { caption: newPost })).data
+    const new_post = (await axios.post('/api/post', { caption: newPost }, options)).data
     if (new_post) {
       dispatch(_createPost(new_post))
     }
