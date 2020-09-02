@@ -5,7 +5,7 @@ import { userReducer } from '../redux/user'
 import { postReducer, createPost } from '../redux/post'
 
 const reducer = combineReducers({
-    user: userReducer,
+    // user: userReducer,
     post: postReducer
 })
 

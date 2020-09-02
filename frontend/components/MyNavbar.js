@@ -33,7 +33,7 @@ const MyNavBar = (props) => {
           </li>
           {window.localStorage.getItem("token") != null ? (
             <li className="nav-item">
-              <Link
+              <a
                 className="nav-link"
                 onClick={() => {
                   window.localStorage.removeItem("token");
@@ -41,7 +41,7 @@ const MyNavBar = (props) => {
                 }}
               >
                 Log Out
-              </Link>
+              </a>
             </li>
           ) : null}
         </ul>
