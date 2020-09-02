@@ -2,15 +2,11 @@ import React, { Component, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 const MyNavBar = (props) => {
-  return (
+  return window.localStorage.getItem("token") != null ? (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      { window.localStorage.getItem("token") != null ?
       <a className="navbar-brand" href="/Home">
-        Navbar
-      </a> : 
-      <a className="navbar-brand">
-        Navbar
-      </a>}
+        Travelgram
+      </a>
       <button
         className="navbar-toggler"
         type="button"
@@ -35,45 +31,19 @@ const MyNavBar = (props) => {
               Profile
             </Link>
           </li>
-          <li className="nav-item dropdown">
-            <Link
-              className="nav-link dropdown-toggle"
-              to="/home"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Dropdown
-            </Link>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="/">
-                Action
-              </a>
-              <a className="dropdown-item" href="/">
-                Another action
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="/">
-                Something else here
-              </a>
-            </div>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link disabled" href="/">
-              Disabled
-            </a>
-          </li>
-          { window.localStorage.getItem("token") != null ?
-          <li className="nav-item">
-            <Link className="nav-link" onClick={() => {
-              window.localStorage.removeItem("token");
-              window.location = "/"
-            }}>
+          {window.localStorage.getItem("token") != null ? (
+            <li className="nav-item">
+              <Link
+                className="nav-link"
+                onClick={() => {
+                  window.localStorage.removeItem("token");
+                  window.location = "/";
+                }}
+              >
                 Log Out
-            </Link>
-          </li> : null }
+              </Link>
+            </li>
+          ) : null}
         </ul>
         <form className="form-inline my-2 my-lg-0">
           <input
@@ -91,6 +61,6 @@ const MyNavBar = (props) => {
         </form>
       </div>
     </nav>
-  );
+  ) : null;
 };
 export default MyNavBar;
