@@ -6,9 +6,7 @@ const { authenticateToken } = require('../../utils')
 
 router.get("/", authenticateToken, async (req, res, next) => {
   try {
-    console.log('userId', req.userId)
     const post = await Post.findAll({
-      where: { userId: req.userId.id },
       include: [{
         model: User
       }]

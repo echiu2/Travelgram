@@ -4,12 +4,12 @@ import { Link, Redirect } from "react-router-dom";
 const MyNavBar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      { window.localStorage.getItem("token") != null ?
-      <a className="navbar-brand" href="/Home">
-        Navbar
-      </a> : 
-      <a className="navbar-brand">
-        Navbar
+      {window.localStorage.getItem("token") != null ?
+        <a className="navbar-brand" href="/Home">
+          Navbar
+      </a> :
+        <a className="navbar-brand">
+          Navbar
       </a>}
       <button
         className="navbar-toggler"
@@ -65,15 +65,15 @@ const MyNavBar = (props) => {
               Disabled
             </a>
           </li>
-          { window.localStorage.getItem("token") != null ?
-          <li className="nav-item">
-            <Link className="nav-link" onClick={() => {
-              window.localStorage.removeItem("token");
-              window.location = "/"
-            }}>
+          {window.localStorage.getItem("token") != null ?
+            <li className="nav-item">
+              <button className="nav-link" onClick={() => {
+                window.localStorage.removeItem("token");
+                window.location = "/"
+              }}>
                 Log Out
-            </Link>
-          </li> : null }
+            </button>
+            </li> : null}
         </ul>
         <form className="form-inline my-2 my-lg-0">
           <input
