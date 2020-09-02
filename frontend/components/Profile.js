@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { createPost, homePost } from "../redux/post";
+const jwt = require('jsonwebtoken')
 
 const Profile = ({ post, create }) => {
   const [caption, setCaption] = useState("");
-  return post.length > 0 ? (
+  const { id } = jwt.verify(window.localStorage.getItem('token'), process.env.JWT_KEY)
+  const filteredPosts = post.filter(eachPost => eachPost.userId === id)
+
+  return (
     <div className="container-fluid gedf-wrapper">
       <div className="row">
         <div className="col-md-2"></div>
@@ -83,7 +87,7 @@ const Profile = ({ post, create }) => {
               <input className="btn-block" type="submit" value="Post" />
             </label>
           </form>
-          {post.map((option, i) => (
+          {filteredPosts.map((option, i) => (
             <div className="card" key={i}>
               <div className="card-header">
                 <p className="card-text">
@@ -109,17 +113,15 @@ const Profile = ({ post, create }) => {
         </div>
       </div>
     </div>
-  ) : (
-    <h1> No Post! </h1>
   );
 };
 //connect to store
 //grab posts from store
 //map through props to display each post
 
-const mapstate = ({ post }) => ({
-  post,
-});
+const mapstate = ({ post }) => {
+  return { post }
+};
 
 const mapDispatch = (dispatch) => ({
   create: (caption) => dispatch(createPost(caption)),

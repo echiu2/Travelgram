@@ -15,9 +15,12 @@ const _createPost = (post) => ({
 })
 
 //thunk - dispatches an action for the reducer
-export const homePost = () => (
+export const homePost = (token) => (
   async (dispatch) => {
-    const post = await axios.get('/api/post')
+    const options = {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }
+    const post = await axios.get('/api/post', options)
     if (post) {
       dispatch(_homePost(post.data))
     }

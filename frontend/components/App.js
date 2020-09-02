@@ -14,25 +14,16 @@ import MyNavbar from "./MyNavbar";
 const App = (props) => {
   useEffect(() => {
     const x = () => {
-      props.load();
-      // if (props.post.length == 1){
-      //   setCaption(props.post[0].caption)
-      // }
+      const token = window.localStorage.getItem("token");
+      props.load(token);
     };
     x();
   }, []);
-
-  // let data = props.post[0];
-  // if (props.post.length == 1) {
-  //   setCaption(data.caption)
-  // }
-
 
   return (
     <div>
       <Router>
         <MyNavbar />
-        {/* <h1>{`${caption}`}</h1> */}
         <Switch>
           <Route path="/" component={LoginPage} exact />
           <Route path="/home" component={Home} />
@@ -40,12 +31,11 @@ const App = (props) => {
         </Switch>
       </Router>
     </div>
-  )
+  );
 };
 
-
 const mapDispatch = (dispatch) => ({
-  load: () => dispatch(homePost()),
+  load: (token) => dispatch(homePost(token)),
 });
 
 export default connect(null, mapDispatch)(App);

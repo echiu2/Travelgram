@@ -1,37 +1,50 @@
 const path = require("path");
+const webpack = require('webpack')
+const dotenv = require('dotenv')
+module.exports = () => {
+  const env = dotenv.config().parsed
 
-module.exports = {
-  entry: [
-    "@babel/polyfill", //enable async-await
-    path.join(__dirname, "frontend", "index.js"),
-  ],
+  const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
 
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
-      {
-        test: /.css$/,
-        use: ['style-loader', 'css-loader']
-      }
+  return {
+    plugins: [
+      new webpack.DefinePlugin(envKeys)
     ],
-  },
-  resolve: {
-    extensions: ["*", ".js", ".jsx"],
-  },
+    entry: [
+      "@babel/polyfill", //enable async-await
+      path.join(__dirname, "frontend", "index.js"),
+    ],
 
-  output: {
-    path: path.join(__dirname, "public"),
-    filename: "bundle.js",
-    publicPath: "/",
-  },
-  
-  devServer: {
-    historyApiFallback: true,
-  },
-};
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+          },
+        },
+        {
+          test: /.css$/,
+          use: ['style-loader', 'css-loader']
+        }
+      ],
+    },
+    resolve: {
+      extensions: ["*", ".js", ".jsx"],
+    },
+
+    output: {
+      path: path.join(__dirname, "public"),
+      filename: "bundle.js",
+      publicPath: "/",
+    },
+
+    devServer: {
+      historyApiFallback: true,
+    },
+  };
+}

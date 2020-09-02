@@ -5,7 +5,8 @@ import { createPost, homePost } from "../redux/post";
 
 const Home = ({ post, create }) => {
   const [caption, setCaption] = useState("");
-  return post.length > 0 ? (
+
+  return (
     <div className="container-fluid gedf-wrapper">
       <h1>
         <center>Newsfeed</center>
@@ -32,15 +33,15 @@ const Home = ({ post, create }) => {
               <input className="btn-block" type="submit" value="Post" />
             </label>
           </form>
-          {post.map((option, i) => (
-            <div className="card" key={i}>
+          {post.map((eachPost, idx) => (
+            <div className="card" key={idx}>
               <div className="card-header">
                 <p className="card-text">
-                  {option.user.firstName + " " + option.user.lastName}
+                  {eachPost.user.firstName + " " + eachPost.user.lastName}
                 </p>
               </div>
               <div className="card-body">
-                <p className="card-text">{option.caption}</p>
+                <p className="card-text">{eachPost.caption}</p>
               </div>
               <div className="card-footer">
                 <a href="#" className="card-link">
@@ -58,9 +59,7 @@ const Home = ({ post, create }) => {
         </div>
       </div>
     </div>
-  ) : (
-      <h1> No Post! </h1>
-    );
+  )
 };
 //connect to store
 //grab posts from store
