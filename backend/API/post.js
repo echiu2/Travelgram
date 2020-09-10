@@ -30,6 +30,7 @@ router.post("/", authenticateToken, async (req, res, next) => {
     const newPost = await Post.create({
       userId: req.userId.id,
       caption: req.body.caption,
+<<<<<<< HEAD
       include: [
         {
           model: User,
@@ -37,6 +38,19 @@ router.post("/", authenticateToken, async (req, res, next) => {
       ],
     });
     res.status(201).send(newPost);
+=======
+    })
+
+    const createdPost = await Post.findOne({
+      where: {
+        id: newPost.id
+      },
+      include: User
+    })
+    
+    res.status(201).send(createdPost)
+
+>>>>>>> ff8dd3e6c2cda3409a3b1ffff14ad3e4679abf7f
   } catch (error) {
     console.log(error);
   }
