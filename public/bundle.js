@@ -7549,7 +7549,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! @babel/polyfill */\"./node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! /Users/kalvinzhao/Desktop/Game_Network/frontend/index.js */\"./frontend/index.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./frontend/index.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"./node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! /Users/echiu2/Desktop/personal_projects/gaming_network/frontend/index.js */\"./frontend/index.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./frontend/index.js?");
 
 /***/ }),
 
