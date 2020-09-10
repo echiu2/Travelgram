@@ -10,6 +10,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 import LoginPage from "./LoginPage";
 import MyNavbar from "./MyNavbar";
+import UpdateProfile from "./UpdateProfile";
 
 const App = (props) => {
   useEffect(() => {
@@ -28,6 +29,7 @@ const App = (props) => {
           <Route path="/" component={LoginPage} exact />
           <Route path="/home" component={Home} />
           <Route path="/profile" component={Profile} />
+          <Route path="/updateProfile" component ={UpdateProfile} />
         </Switch>
       </Router>
     </div>

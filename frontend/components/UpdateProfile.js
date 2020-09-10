@@ -11,7 +11,7 @@ const Profile = ({ user }) => {
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
 
-    return user.id ? (
+    return window.localStorage.getItem("token") ? (
         <div>
             <h1>Update Profile</h1>
             <form onSubmit={async (ev) => {

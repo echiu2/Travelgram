@@ -26,9 +26,8 @@ const LoginForm = (props) => {
             await axios.post("/api/auth", { email, password }, options)
           ).data;
           window.localStorage.setItem("token", token);
-          //props.login(email, password)
+          props.login(email, password)
           window.location = "/home";
-          // history.push('/home')
         }}
       >
         <label>
@@ -62,5 +61,3 @@ const mapDispatch = (dispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(LoginForm);
-
-// export default LoginForm;
