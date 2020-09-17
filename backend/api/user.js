@@ -23,26 +23,48 @@ router.post('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
     try {
-        const { firstName, lastName, email, password, newPassword, confirmNewPassword } = req.body
+        const { firstName, lastName, email, password} = req.body
+        if (password) next()
+        console.log("no password changed")
         const user = await User.findOne({
             where: {
                 email: req.body.user.email,
             }
         })
+        if (user){
+            user.update({firstName, lastName, email})
+            res.status(201)
+        }
+        else{
+            res.status(401).send('no user information available')
+        }
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
+router.put('/', async (req, res, next) => {
+    try{
+        const {user, password, newPassword, confirmNewPassword, email} = req.body
+        if (email) next()
+        const curr_user = await User.findOne({
+                        where: {
+                            email: user.email,
+                        }
+                    })
         if (password === req.body.user.password) {
             if (newPassword === confirmNewPassword) {
-                user.update({
-                    firstName, lastName, email, password: newPassword
-                })
+                curr_user.update({password: newPassword})
+                res.status(201)
             } else {
                 throw new Error('new passwords do not match')
             }
         } else {
             res.status(401).send('incorrect password')
         }
-
     }
-    catch (e) {
+    catch (e){
         console.log(e)
     }
 })

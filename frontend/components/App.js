@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import LoginPage from "./LoginPage";
 import MyNavbar from "./MyNavbar";
 import UpdateProfile from "./UpdateProfile";
+import updateSecurity from "./updateSecurity";
 
 const App = (props) => {
   useEffect(() => {
@@ -30,6 +31,7 @@ const App = (props) => {
           <Route path="/home" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/updateProfile" component ={UpdateProfile} />
+          <Route path="/updateSecurity" component = {updateSecurity} />
         </Switch>
       </Router>
     </div>
