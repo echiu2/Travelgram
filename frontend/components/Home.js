@@ -3,9 +3,18 @@ import { connect } from "react-redux";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { createPost, homePost } from "../redux/post";
 
-const Home = ({ post, create }) => {
+const Home = ({ post, create, getPosts }) => {
   const [caption, setCaption] = useState("");
   const token = window.localStorage.getItem("token")
+
+  useEffect(() => {
+    const load = () => {
+      const token = window.localStorage.getItem("token");
+      getPosts(token);
+    };
+    load();
+  }, []);
+
   return (
     <div className="container-fluid gedf-wrapper">
       <h1>
@@ -76,6 +85,7 @@ const mapstate = ({ post }) => ({
 
 const mapDispatch = (dispatch) => ({
   create: (caption, options) => dispatch(createPost(caption, options)),
+  getPosts: (token) => dispatch(homePost(token)),
 });
 
 export default connect(mapstate, mapDispatch)(Home);

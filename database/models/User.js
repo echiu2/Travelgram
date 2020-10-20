@@ -30,11 +30,11 @@ const User = connection.define("user", {
 });
 
 // // user can have many posts
-User.associate = (models) => {
-  User.hasMany(models.Post, {
-    foreignKey: "user_id",
-    as: "post",
-  });
-};
+// User.associate = (models) => {
+//   User.hasMany(models.Post, {
+//     foreignKey: "user_id",
+//     as: "post",
+//   });
+// };
 
 module.exports = User;

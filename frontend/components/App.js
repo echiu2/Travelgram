@@ -12,14 +12,7 @@ import LoginPage from "./LoginPage";
 import MyNavbar from "./MyNavbar";
 import UpdateProfile from "./UpdateProfile";
 
-const App = (props) => {
-  useEffect(() => {
-    const x = () => {
-      const token = window.localStorage.getItem("token");
-      props.load(token);
-    };
-    x();
-  }, []);
+const App = () => {
 
   return (
     <div>
@@ -29,15 +22,11 @@ const App = (props) => {
           <Route path="/" component={LoginPage} exact />
           <Route path="/home" component={Home} />
           <Route path="/profile" component={Profile} />
-          <Route path="/updateProfile" component ={UpdateProfile} />
+          <Route path="/updateProfile" component={UpdateProfile} />
         </Switch>
       </Router>
     </div>
   );
 };
 
-const mapDispatch = (dispatch) => ({
-  load: (token) => dispatch(homePost(token)),
-});
-
-export default connect(null, mapDispatch)(App);
+export default connect(null, null)(App);
