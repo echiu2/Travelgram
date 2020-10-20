@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const Profile = ({ post, create, user }) => {
   const [caption, setCaption] = useState("");
   const filteredPosts = post.filter((eachPost) => eachPost.userId === user.id);
-  // console.log('user', user)
+  console.log('user', user)
   return (
     <div className="container-fluid gedf-wrapper">
       <div className="row">

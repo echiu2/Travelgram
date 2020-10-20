@@ -23,11 +23,14 @@ export const setUser = (email, password) => (
     }
 )
 
-export const updateUser = (firstName, lastName, email, password, newPassword, confirmNewPassword) => (
+export const updateUser = (firstName, lastName, email) => (
     async (dispatch) => {
-        const user = await axios.put('/api/user', {firstName, lastName, email, password, newPassword, confirmNewPassword})
+        // console.log(firstName)
+        const user = await axios.put('/api/user', {firstName, lastName, email})
         //sanity check for updating users
+        console.log("check", user)
         if (user){
+            console.log('user', user)
             dispatch(_updateUser(user.data))
         }
         else{
@@ -42,6 +45,12 @@ export const userReducer = (state = [], action) => {
         case SET_USER:
             state = action.user;
         case UPDATE_USER:
+            // let x = action.user
+            // let obj = Object.assign({}, x)
+            // obj.firstName = "Hello"
+            // obj.lastName = "World"
+            // console.log("obj", obj)
+            // state = [...state, obj]
             state = action.user
         default:
             return state
