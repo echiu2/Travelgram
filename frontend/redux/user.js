@@ -45,13 +45,13 @@ export const userReducer = (state = [], action) => {
         case SET_USER:
             state = action.user;
         case UPDATE_USER:
-            // let x = action.user
-            // let obj = Object.assign({}, x)
-            // obj.firstName = "Hello"
-            // obj.lastName = "World"
-            // console.log("obj", obj)
-            // state = [...state, obj]
-            state = action.user
+            return {
+                ...state,
+                firstName: action.user.firstName,
+                lastName: action.user.lastName,
+                // email: action.user.email
+            }
+            // state = action.user
         default:
             return state
     }

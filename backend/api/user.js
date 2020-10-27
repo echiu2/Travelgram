@@ -33,11 +33,9 @@ router.put('/', async (req, res, next) => {
                 email: req.body.email,
             }
         })
-        // console.log(user)
+        console.log("email",email)
         if (user){
-            // console.log("before", user)
             user.update({firstName, lastName, email})
-            // console.log("after", user)
             res.status(201).send(user)
         }
         else{

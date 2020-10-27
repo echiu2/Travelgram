@@ -24,10 +24,6 @@ const updateProfile = ({ user, updateUser }) => {
           //   lastName,
           //   email,
           // });
-
-          console.log("firstName", firstName);
-          console.log('lastName', lastName);
-          console.log('email', email);
         }}
       >
         <div className="form-group">
