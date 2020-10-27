@@ -13,7 +13,6 @@ router.get("/", authenticateToken, async (req, res, next) => {
         },
       ],
     });
-    // console.log(post)
     if (post) {
       res.status(200).send(post);
     } 

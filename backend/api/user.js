@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require('../../database/models/index')
+const { authenticateToken } = require("../../utils");
 
-router.post('/', async (req, res, next) => {
+router.post('/', authenticateToken, async (req, res, next) => {
     try {
         const user = await User.findOne({
             where: {
@@ -21,19 +22,16 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-router.put('/', async (req, res, next) => {
+router.put('/', authenticateToken, async (req, res, next) => {
     try {
-        const { firstName, lastName, email} = req.body
-        // console.log(req.body)
-        // console.log("check error", req.body)
-        // if (password) next()
-        // console.log("no password changed")
+        const {firstName, lastName, email} = req.body
+        console.log(req.userId)
         const user = await User.findOne({
             where: {
-                email: req.body.email,
+                id: req.userId.id,
             }
         })
-        console.log("email",email)
+        console.log(user)
         if (user){
             user.update({firstName, lastName, email})
             res.status(201).send(user)

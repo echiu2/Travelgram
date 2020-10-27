@@ -6,24 +6,23 @@ import { updateUser } from "../redux/user";
 const updateProfile = ({ user, updateUser }) => {
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [lastName, setLastName] = useState(user.lastName);
-  const [email, setEmail] = useState(`${user.email}`);
+  const [email, setEmail] = useState(`${user.email}`,);
   // const [password, setPassword] = useState('');
   // const [newPassword, setNewPassword] = useState('');
   // const [confirmNewPassword, setConfirmNewPassword] = useState('');
-
-  return window.localStorage.getItem("token") ? (
+  const token = window.localStorage.getItem("token")
+  return token ? (
     <div>
       <h1>Update Profile</h1>
       <form
         onSubmit={async (ev) => {
           ev.preventDefault();
-          updateUser(firstName, lastName, email)
-          // const profile = await Axios.put("/api/user", {
-          //   user,
-          //   firstName,
-          //   lastName,
-          //   email,
-          // });
+          const options = {
+            headers: {
+              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            },
+          };
+          updateUser(options, firstName, lastName, email)
         }}
       >
         <div className="form-group">
@@ -78,7 +77,7 @@ const mapstate = ({ user }) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  updateUser: (firstName,lastName,email) => dispatch(updateUser(firstName, lastName, email))
+  updateUser: (token, firstName,lastName,email) => dispatch(updateUser(token, firstName, lastName, email))
 });
 
 export default connect(mapstate, mapDispatch)(updateProfile);
