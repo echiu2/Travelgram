@@ -13,6 +13,12 @@ const _updateUser = (user) => ({
     user
 })
 
+const UPDATE_SECURITY = 'UPDATE_SECURITY'
+const _updateSecurity = (user) => ({
+    type: UPDATE_SECURITY,
+    user
+})
+
 //thunk - dispatches an action for the reducer
 export const setUser = (email, password) => (
     async (dispatch) => {
@@ -38,6 +44,18 @@ export const updateUser = (options, firstName, lastName, email) => (
     }
 )
 
+export const updateUserSecurity = (options, password, newPassword, confirmNewPassword) => (
+    async (dispatch) => {
+        const user = await axios.put('/api/updateSecurity', {password, newPassword, confirmNewPassword}, options)
+        if (user){
+            dispatch(_updateSecurity(user.data))
+        }
+        else{
+            console.log("something wrong happened")
+        }
+    }
+)
+
 //holds the state 
 export const userReducer = (state = [], action) => {
     switch (action.type) {
@@ -49,6 +67,11 @@ export const userReducer = (state = [], action) => {
                 firstName: action.user.firstName,
                 lastName: action.user.lastName,
                 email: action.user.email
+            }
+        case UPDATE_SECURITY:
+            return {
+                ...state,
+                password: action.user.newPassword
             }
         default:
             return state

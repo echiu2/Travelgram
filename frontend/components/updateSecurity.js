@@ -1,19 +1,28 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Axios from 'axios';
+import { updateUserSecurity } from "../redux/user";
 
-const updateSecurity = ({user}) => {
+const updateSecurity = ({user, updateUserSecurity}) => {
     const [password, setPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const token = window.localStorage.getItem("token")
 
-    return window.localStorage.getItem("token") ? (
+    return token ? (
         <div>
             <h1>Update Security Settings</h1>
             <form onSubmit={async (ev) => {
                 ev.preventDefault()
-                const profile = await Axios.put('/api/user', {user, password, newPassword, confirmNewPassword})
-                console.log("password", password)
+                const options = {
+                    headers: {
+                      Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                    },
+                  };
+                console.log(options, password, newPassword, confirmNewPassword)
+                updateUserSecurity(options, password, newPassword, confirmNewPassword)
+                // const profile = await Axios.put('/api/user', {user, password, newPassword, confirmNewPassword})
+                // console.log("password", password)
             }}>
                 <div className="form-group">
                     <label >Password</label>
@@ -42,4 +51,8 @@ const mapstate = ({ user }) => ({
     user
 })
 
-export default connect(mapstate, null)(updateSecurity)
+const mapDispatch = (dispatch) => ({
+    updateUserSecurity: (token, password, newPassword, confirmNewPassword) => dispatch(updateUserSecurity(token, password, newPassword, confirmNewPassword))
+});
+
+export default connect(mapstate, mapDispatch)(updateSecurity)

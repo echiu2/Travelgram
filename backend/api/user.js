@@ -45,29 +45,4 @@ router.put('/', authenticateToken, async (req, res, next) => {
     }
 })
 
-// router.put('/', async (req, res, next) => {
-//     try{
-//         const {user, password, newPassword, confirmNewPassword, email} = req.body
-//         if (email) next()
-//         const curr_user = await User.findOne({
-//                         where: {
-//                             email: user.email,
-//                         }
-//                     })
-//         if (password === req.body.user.password) {
-//             if (newPassword === confirmNewPassword) {
-//                 curr_user.update({password: newPassword})
-//                 res.status(201)
-//             } else {
-//                 throw new Error('new passwords do not match')
-//             }
-//         } else {
-//             res.status(401).send('incorrect password')
-//         }
-//     }
-//     catch (e){
-//         console.log(e)
-//     }
-// })
-
 module.exports = router
