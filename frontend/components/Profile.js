@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const Profile = ({ post, create, user }) => {
   const [caption, setCaption] = useState("");
+  console.log(post)
   const filteredPosts = post.filter((eachPost) => eachPost.userId === user.id);
   console.log('user', user)
   return (
@@ -63,60 +64,53 @@ const Profile = ({ post, create, user }) => {
                 <center>Friends</center>
               </h3>
             </div>
-            <div className="card">
-              <div className="card-header">
-                <h3 className="card-text">
-                  <center>Friend</center>
-                </h3>
-              </div>
-              <div className="card-body"></div>
-              <div className="card-footer"></div>
-            </div>
+            <div className="card-body"></div>
+            <div className="card-footer"></div>
           </div>
-          <div className="col-md-4 gedf-main">
-            <form
-              onSubmit={(ev) => {
-                ev.preventDefault();
-                create(caption);
-              }}
-            >
-              <label>
-                Create Post
+        </div>
+        <div className="col-md-4 gedf-main">
+          <form
+            onSubmit={(ev) => {
+              ev.preventDefault();
+              create(caption);
+            }}
+          >
+            <label>
+              Create Post
               <textarea
-                  name="new_post"
-                  placeholder="What's on your mind?"
-                  rows="6"
-                  cols="53"
-                  style={{ resize: "none" }}
-                  onChange={(event) => setCaption(event.target.value)}
-                ></textarea>
-                <input className="btn-block" type="submit" value="Post" />
-              </label>
-            </form>
-            {filteredPosts.map((option, i) => (
-              <div className="card" key={i}>
-                <div className="card-header">
-                  <p className="card-text">
-                    {option.user.firstName + " " + option.user.lastName}
-                  </p>
-                </div>
-                <div className="card-body">
-                  <p className="card-text">{option.caption}</p>
-                </div>
-                <div className="card-footer">
-                  <a href="#" className="card-link">
-                    <i className="fa fa-gittip"></i> Like
-                </a>
-                  <a href="#" className="card-link">
-                    <i className="fa fa-comment"></i> Comment
-                </a>
-                  <a href="#" className="card-link">
-                    <i className="fa fa-mail-forward"></i> Share
-                </a>
-                </div>
+                name="new_post"
+                placeholder="What's on your mind?"
+                rows="6"
+                cols="53"
+                style={{ resize: "none" }}
+                onChange={(event) => setCaption(event.target.value)}
+              ></textarea>
+              <input className="btn-block" type="submit" value="Post" />
+            </label>
+          </form>
+          {filteredPosts.map((option, i) => (
+            <div className="card" key={i}>
+              <div className="card-header">
+                <p className="card-text">
+                  {option.user.firstName + " " + option.user.lastName}
+                </p>
               </div>
-            ))}
-          </div>
+              <div className="card-body">
+                <p className="card-text">{option.caption}</p>
+              </div>
+              <div className="card-footer">
+                <a href="#" className="card-link">
+                  <i className="fa fa-gittip"></i> Like
+                </a>
+                <a href="#" className="card-link">
+                  <i className="fa fa-comment"></i> Comment
+                </a>
+                <a href="#" className="card-link">
+                  <i className="fa fa-mail-forward"></i> Share
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

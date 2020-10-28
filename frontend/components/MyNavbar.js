@@ -31,6 +31,11 @@ const MyNavBar = (props) => {
               Profile
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/friendRequests">
+              Friend Requests
+            </Link>
+          </li>
           {window.localStorage.getItem("token") != null ? (
             <li className="nav-item">
               <a

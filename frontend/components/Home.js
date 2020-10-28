@@ -80,7 +80,7 @@ const Home = ({ post, create, getPosts }) => {
 //map through props to display each post
 
 const mapstate = ({ post }) => ({
-  post,
+  post
 });
 
 const mapDispatch = (dispatch) => ({
