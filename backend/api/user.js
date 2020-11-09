@@ -3,7 +3,7 @@ const router = express.Router();
 const { User } = require('../../database/models/index')
 const { authenticateToken } = require("../../utils");
 
-router.post('/', authenticateToken, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const user = await User.findOne({
             where: {
