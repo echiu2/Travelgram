@@ -1,5 +1,6 @@
 const connection = require("../connection");
 const Sequelize = require("sequelize");
+const { DATEONLY } = require("sequelize");
 const { UUID, UUIDV4, STRING } = Sequelize;
 // const { Post, associate } = require("./Post");
 
@@ -27,6 +28,10 @@ const User = connection.define("user", {
     type: STRING,
     allownull: false,
   },
+  birthday: {
+    type: DATEONLY,
+    allownull: false,
+  }
 });
 
 // // user can have many posts
