@@ -31,7 +31,11 @@ const User = connection.define("user", {
   birthday: {
     type: DATEONLY,
     allownull: false,
-  }
+  },
+  location : {
+    type: STRING, 
+    allownull: false,
+  },
 });
 
 // // user can have many posts

@@ -44,7 +44,7 @@ const Profile = ({ post, create, user }) => {
                 distracted by the readable content of a page when looking at its
                 layout.
               </li>
-              <li className="card-text">Location: New York, NY</li>
+              <li className="card-text">Location: {user.location}</li>
             </div>
             <div className="card-footer"></div>
           </div>

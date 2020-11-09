@@ -5,9 +5,9 @@ const sync = async () => {
   try {
     await connection.sync({ force: true });
     const [edwin, kalvin, brandon] = await Promise.all([
-      User.create({ firstName: "edwin", lastName: "chiu", email: "echiu@gmail.com", password: "123" ,birthday: "1998-04-21"}),
-      User.create({ firstName: "kalvin", lastName: "zhao", email: "kzhao@gmail.com", password: "123",birthday: "1998-04-21" }),
-      User.create({ firstName: "brandon", lastName: "lau", email: "blau@gmail.com", password: "123" ,birthday: "1998-04-21"}),
+      User.create({ firstName: "edwin", lastName: "chiu", email: "echiu@gmail.com", password: "123", birthday: "1998-04-21", location: "NY,US"}),
+      User.create({ firstName: "kalvin", lastName: "zhao", email: "kzhao@gmail.com", password: "123", birthday: "1998-04-21",location: "NY,US" }),
+      User.create({ firstName: "brandon", lastName: "lau", email: "blau@gmail.com", password: "123" , birthday: "1998-04-21",location: "NY,US"}),
     ]);
     const p = await Promise.all([
       Post.create({ userId: edwin.id, caption: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." }),
