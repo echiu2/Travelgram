@@ -14,7 +14,8 @@ router.post("/", async (req, res, next) => {
         password: req.body.password,
       },
     });
-    // console.log(process.env.JWT_KEY)
+    console.log(process.env.JWT_KEY)
+    // console.log('user',user)
     if (user) {
       res.status(200).send(jwt.sign({ id: user.id }, process.env.JWT_KEY));
     } else {

@@ -12,6 +12,7 @@ import LoginPage from "./LoginPage";
 import MyNavbar from "./MyNavbar";
 import UpdateProfile from "./UpdateProfile";
 import FriendRequests from "./FriendRequests";
+import updateSecurity from "./updateSecurity";
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/profile" component={Profile} />
           <Route path="/updateProfile" component={UpdateProfile} />
           <Route path="/friendRequests" component={FriendRequests} />
+          <Route path="/updateSecurity" component = {updateSecurity} />
         </Switch>
       </Router>
     </div>

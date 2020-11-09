@@ -14,7 +14,9 @@ const Profile = ({ post, create, user }) => {
       <div className="row">
         <div className="col-md-2"></div>
         <div className="col-md-4">
-          <a href="/updateProfile">Update Profile</a>
+        <a href="/updateProfile">Update Profile</a>
+        <br></br>
+        <a href='/updateSecurity'> Change Security Settings</a>
           <br></br>
           <div className="card">
             <div className="card-header">
