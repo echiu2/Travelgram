@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require('../../database/models/index')
+const { authenticateToken } = require("../../utils");
 
-router.post('/', async (req, res, next) => {
+router.post('/', authenticateToken, async (req, res, next) => {
     try {
         const user = await User.findOne({
             where: {
@@ -21,26 +22,23 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-router.put('/', async (req, res, next) => {
+router.put('/', authenticateToken, async (req, res, next) => {
     try {
-        const { firstName, lastName, email, password, newPassword, confirmNewPassword } = req.body
+        const {firstName, lastName, email} = req.body
+        console.log(req.userId)
         const user = await User.findOne({
             where: {
-                email: req.body.user.email,
+                id: req.userId.id,
             }
         })
-        if (password === req.body.user.password) {
-            if (newPassword === confirmNewPassword) {
-                user.update({
-                    firstName, lastName, email, password: newPassword
-                })
-            } else {
-                throw new Error('new passwords do not match')
-            }
-        } else {
-            res.status(401).send('incorrect password')
+        console.log(user)
+        if (user){
+            user.update({firstName, lastName, email})
+            res.status(201).send(user)
         }
-
+        else{
+            res.status(401).send('no user information available')
+        }
     }
     catch (e) {
         console.log(e)
