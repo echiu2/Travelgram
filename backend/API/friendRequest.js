@@ -10,7 +10,7 @@ router.get('/', authenticateToken, async (req, res, next) => {
             where: {
                 [Op.or]: [
                     { userId: req.userId.id },
-                    { friendId: req.userId.id }
+                    { requestedId: req.userId.id }
                 ]
             },
             include: [{

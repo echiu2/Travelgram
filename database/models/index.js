@@ -7,8 +7,8 @@ Post.belongsTo(User)
 User.hasMany(Post)
 
 FriendRequest.belongsTo(User)
-User.hasMany(FriendRequest)
-
+//User.hasMany(FriendRequest)
+User.belongsToMany(User, { as: 'requested', through: FriendRequest })
 User.belongsToMany(User, { as: 'friendId', through: Friend })
 //when we request to add a friend, it should create a new row into FriendRequests table.
 //friend who recieves request should be able to see all OpenRequest and confirm to add.

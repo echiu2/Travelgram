@@ -11,12 +11,13 @@ const FriendRequests = ({ friendRequests, user, getRequests }) => {
         load()
     }, [])
     console.log('reqs', friendRequests)
+    console.log('user', user)
     return (
         <div>
             <h1>FRIEND REQUESTS</h1>
             {
                 friendRequests.map((request, idx) => {
-                    return request.userId === user.id ? <div key={idx}>sent to {request.friendId} </div> : <div key={idx}>invite from {request.userId} </div>
+                    return request.userId === user.id ? <div key={idx}>sent to {} </div> : <div key={idx}>invite from {} </div>
                 })
             }
         </div>
