@@ -8,6 +8,7 @@ router.get('/', authenticateToken, async (req, res, next) => {
     try {
         const requests = await FriendRequest.findAll({
             where: {
+                //requestedId: req.userId.id
                 [Op.or]: [
                     { userId: req.userId.id },
                     { requestedId: req.userId.id }

@@ -18,6 +18,7 @@ const sync = async () => {
     // FriendRequest.create({ userId: kalvin.id, friendId: brandon.id })
 
     kalvin.addRequested(brandon)
+    edwin.addRequested(kalvin)
     // kalvin.addRequestedId(edwin)
     // brandon.addRequestedId(kalvin)
 

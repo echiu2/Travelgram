@@ -25,13 +25,11 @@ router.post('/', async (req, res, next) => {
 router.put('/', authenticateToken, async (req, res, next) => {
     try {
         const {firstName, lastName, email} = req.body
-        console.log(req.userId)
         const user = await User.findOne({
             where: {
                 id: req.userId.id,
             }
         })
-        console.log(user)
         if (user){
             user.update({firstName, lastName, email})
             res.status(201).send(user)

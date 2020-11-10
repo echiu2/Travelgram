@@ -33,9 +33,7 @@ export const updateUser = (options, firstName, lastName, email) => (
     async (dispatch) => {
         const user = await axios.put('/api/user', {firstName, lastName, email}, options)
         //sanity check for updating users
-        // console.log("check", user)
         if (user){
-            // console.log('user', user)
             dispatch(_updateUser(user.data))
         }
         else{

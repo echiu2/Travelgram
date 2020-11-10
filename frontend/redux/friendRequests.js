@@ -13,7 +13,6 @@ export const loadRequests = (token) => (
             headers: { 'Authorization': `Bearer ${token}` }
         }
         const requests = await axios.get('/api/friendRequests', options)
-        console.log('requests', requests)
         dispatch(_loadRequests(requests.data))
     }
 )
