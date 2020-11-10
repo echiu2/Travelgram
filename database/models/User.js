@@ -1,7 +1,7 @@
 const connection = require("../connection");
 const Sequelize = require("sequelize");
 const { DATEONLY } = require("sequelize");
-const { UUID, UUIDV4, STRING } = Sequelize;
+const { UUID, UUIDV4, STRING, TEXT } = Sequelize;
 // const { Post, associate } = require("./Post");
 
 // Creating table schemas for user
@@ -31,6 +31,10 @@ const User = connection.define("user", {
   birthday: {
     type: DATEONLY,
     allownull: false,
+  },
+  bio: {
+    type: TEXT("SMALL"),
+    allowNUll: false,
   },
   location : {
     type: STRING, 

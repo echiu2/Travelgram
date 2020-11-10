@@ -39,11 +39,7 @@ const Profile = ({ post, create, user }) => {
             </div>
             <div className="card-body">
               <li className="card-text">Birthday: {user.birthday}</li>
-              <li className="card-text">
-                About Me: It is a long established fact that a reader will be
-                distracted by the readable content of a page when looking at its
-                layout.
-              </li>
+              <li className="card-text">About Me: {user.bio}</li>
               <li className="card-text">Location: {user.location}</li>
             </div>
             <div className="card-footer"></div>
