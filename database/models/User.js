@@ -29,7 +29,7 @@ const User = connection.define("user", {
     allownull: false,
   },
   birthday: {
-    type: DATEONLY,
+    type: STRING,
     allownull: false,
   },
   bio: {

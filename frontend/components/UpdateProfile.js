@@ -6,10 +6,10 @@ import { updateUser } from "../redux/user";
 const updateProfile = ({ user, updateUser }) => {
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [lastName, setLastName] = useState(user.lastName);
-  const [email, setEmail] = useState(`${user.email}`,);
-  // const [password, setPassword] = useState('');
-  // const [newPassword, setNewPassword] = useState('');
-  // const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [email, setEmail] = useState(`${user.email}`);
+  const [birthday, setBirthday] = useState(`${user.birthday}`);
+  const [location, setLocation] = useState(`${user.location}`);
+
   const token = window.localStorage.getItem("token")
   return token ? (
     <div>
@@ -56,6 +56,26 @@ const updateProfile = ({ user, updateUser }) => {
             onChange={(ev) => setEmail(ev.target.value)}
           />
           <small className="form-text text-muted">Update email address.</small>
+        </div>
+        <div className="form-group">
+          <label>Birthday</label>
+          <input
+            type="birthday"
+            className="form-control"
+            value={`${birthday}`}
+            onChange={(ev) => setBirthday(ev.target.value)}
+          />
+          <small className="form-text text-muted">Update Birthday (MM/DD/YYYY).</small>
+        </div>
+        <div className="form-group">
+          <label>Location</label>
+          <input
+            type="birthday"
+            className="form-control"
+            value={`${location}`}
+            onChange={(ev) => setLocation(ev.target.value)}
+          />
+          <small className="form-text text-muted">Update Location.</small>
         </div>
         <div>
           <a className="btn btn-primary" href="/profile" role="button">
