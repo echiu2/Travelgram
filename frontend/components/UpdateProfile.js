@@ -8,6 +8,7 @@ const updateProfile = ({ user, updateUser }) => {
   const [lastName, setLastName] = useState(user.lastName);
   const [email, setEmail] = useState(`${user.email}`);
   const [birthday, setBirthday] = useState(`${user.birthday}`);
+  const [bio, setBio] = useState(`${user.bio}`);
   const [location, setLocation] = useState(`${user.location}`);
 
   const token = window.localStorage.getItem("token")
@@ -22,7 +23,7 @@ const updateProfile = ({ user, updateUser }) => {
               Authorization: `Bearer ${window.localStorage.getItem("token")}`,
             },
           };
-          updateUser(options, firstName, lastName, email)
+          updateUser(options, firstName, lastName, email, birthday, location, bio)
         }}
       >
         <div className="form-group">
@@ -77,6 +78,16 @@ const updateProfile = ({ user, updateUser }) => {
           />
           <small className="form-text text-muted">Update Location.</small>
         </div>
+        <div className="form-group">
+          <label>Bio</label>
+          <textarea
+            type="birthday"
+            className="form-control"
+            value={`${bio}`}
+            onChange={(ev) => setBio(ev.target.value)}
+          />
+          <small className="form-text text-muted">Update Bio.</small>
+        </div>
         <div>
           <a className="btn btn-primary" href="/profile" role="button">
             Back
@@ -97,7 +108,8 @@ const mapstate = ({ user }) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  updateUser: (token, firstName,lastName,email) => dispatch(updateUser(token, firstName, lastName, email))
+  updateUser: (token, firstName,lastName,email,birthday,location,bio) => 
+    dispatch(updateUser(token, firstName, lastName, email,birthday,location,bio))
 });
 
 export default connect(mapstate, mapDispatch)(updateProfile);

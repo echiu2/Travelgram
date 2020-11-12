@@ -24,7 +24,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/', authenticateToken, async (req, res, next) => {
     try {
-        const {firstName, lastName, email} = req.body
+        const {firstName, lastName, email, birthday,location,bio} = req.body
         console.log(req.userId)
         const user = await User.findOne({
             where: {
@@ -33,7 +33,7 @@ router.put('/', authenticateToken, async (req, res, next) => {
         })
         console.log(user)
         if (user){
-            user.update({firstName, lastName, email})
+            user.update({firstName, lastName, email, birthday, location,bio})
             res.status(201).send(user)
         }
         else{

@@ -29,9 +29,9 @@ export const setUser = (email, password) => (
     }
 )
 
-export const updateUser = (options, firstName, lastName, email) => (
+export const updateUser = (options, firstName, lastName, email, birthday, location, bio) => (
     async (dispatch) => {
-        const user = await axios.put('/api/user', {firstName, lastName, email}, options)
+        const user = await axios.put('/api/user', {firstName, lastName, email, birthday, location, bio}, options)
         //sanity check for updating users
         // console.log("check", user)
         if (user){
@@ -66,7 +66,10 @@ export const userReducer = (state = [], action) => {
                 ...state,
                 firstName: action.user.firstName,
                 lastName: action.user.lastName,
-                email: action.user.email
+                email: action.user.email,
+                birthday: action.user.birthday,
+                location: action.user.location,
+                bio: action.user.bio
             }
         case UPDATE_SECURITY:
             return {
