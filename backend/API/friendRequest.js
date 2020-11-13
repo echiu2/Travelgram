@@ -10,15 +10,25 @@ router.get('/', authenticateToken, async (req, res, next) => {
             where: {
                 //requestedId: req.userId.id
                 [Op.or]: [
-                    { userId: req.userId.id },
-                    { requestedId: req.userId.id }
+                    { senderId: req.userId.id },
+                    { recieverId: req.userId.id }
                 ]
             },
             include: [{
-                model: User
+                model: User,
+                as: "sender"
             }]
         })
         res.status(200).send(requests)
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
+router.post('/', async (req, res, next) => {
+    try {
+        console.log('post at friends!!!!!!')
     }
     catch (e) {
         console.log(e)

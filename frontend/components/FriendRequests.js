@@ -16,12 +16,36 @@ const FriendRequests = ({ friendRequests, user, getRequests }) => {
             <h1>FRIEND REQUESTS</h1>
             {
                 friendRequests.map((request, idx) => {
-                    return request.userId === user.id ? <div key={idx}>sent to {request.userId} </div> : <div key={idx}>invite from {request.user.firstName} </div>
+                    return request.userId === user.id ?
+                        <div className="card" key={idx}>
+                            {/* <div className="card-header">
+                            </div> */}
+                            <div className="card-body">
+                                {/* <div>sent to {request.userId}</div> */}
+
+                                <button onClick={() => axios.post('/api/friendRequests')} className="btn btn-primary">Accept</button>
+                                <button onClick={() => console.log('stranger danger')} className="btn btn-danger">Decline</button>
+                            </div>
+                            {/* <div className="card-footer"></div> */}
+                        </div> :
+                        <div className="card" key={idx}>
+                            {/* <div className="card-header">
+                            </div> */}
+                            <div className="card-body">
+                                {/* <div>sent from {request.user.firstName + " " + request.user.lastName} </div> */}
+
+                                <button onClick={() => console.log('test')} className="btn btn-primary">Accept</button>
+                                <button onClick={() => console.log('stranger danger')} className="btn btn-danger">Decline</button>
+                            </div>
+
+                            {/* <div className="card-footer"></div> */}
+                        </div>
                 })
             }
         </div>
     )
 }
+
 
 const mapState = ({ friendRequests, user }) => ({
     friendRequests,

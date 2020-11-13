@@ -9,16 +9,18 @@ const sync = async () => {
       User.create({ firstName: "kalvin", lastName: "zhao", email: "kzhao@gmail.com", password: "123" }),
       User.create({ firstName: "brandon", lastName: "lau", email: "blau@gmail.com", password: "123" }),
     ]);
-    brandon.addFriendId(kalvin)
-    kalvin.addFriendId(brandon)
-    brandon.addFriendId(edwin)
-    edwin.addFriendId(brandon)
+    // brandon.addFriendId(kalvin)
+    // kalvin.addFriendId(brandon)
+    // brandon.addFriendId(edwin)
+    // edwin.addFriendId(brandon)
 
     // FriendRequest.create({ userId: edwin.id, friendId: kalvin.id })
     // FriendRequest.create({ userId: kalvin.id, friendId: brandon.id })
 
-    kalvin.addRequested(brandon)
-    edwin.addRequested(kalvin)
+    kalvin.addSender(brandon)
+    kalvin.addSender(edwin)
+    // edwin.addSender(kalvin)
+    // brandon.addSender(kalvin)
     // kalvin.addRequestedId(edwin)
     // brandon.addRequestedId(kalvin)
 
