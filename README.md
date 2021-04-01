@@ -1,5 +1,5 @@
 # Travelgram
-A social network for gaming.
+A social network for traveling.
 
 Goals:<br />
 -Week 1: <br />
