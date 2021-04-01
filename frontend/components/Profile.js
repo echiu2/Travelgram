@@ -72,7 +72,12 @@ const Profile = ({ post, create, user }) => {
           <form
             onSubmit={(ev) => {
               ev.preventDefault();
-              create(caption);
+              const options = {
+                headers: {
+                  Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                },
+              };
+              create(caption, options);
             }}
           >
             <label>
@@ -125,7 +130,7 @@ const mapstate = ({ post, user }) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  create: (caption) => dispatch(createPost(caption)),
+  create: (caption, options) => dispatch(createPost(caption, options)),
 });
 
 export default connect(mapstate, mapDispatch)(Profile);
