@@ -10,7 +10,7 @@ const FriendRequests = ({ friendRequests, user, getRequests }) => {
         }
         load()
     }, [])
-    console.log('requests', friendRequests)
+    console.log('friends', friendRequests)
     return (
         <div>
             <h1>FRIEND REQUESTS</h1>

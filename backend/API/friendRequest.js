@@ -4,19 +4,22 @@ const { FriendRequest, User } = require('../../database/models/index')
 const { authenticateToken } = require("../../utils");
 const { Op } = require("sequelize");
 
-router.get('/', authenticateToken, async (req, res, next) => {
+router.get('/sent', authenticateToken, async (req, res, next) => {
     try {
         const requests = await FriendRequest.findAll({
             where: {
-                //requestedId: req.userId.id
                 [Op.or]: [
-                    { senderId: req.userId.id },
-                    { recieverId: req.userId.id }
+                    { userId: req.userId.id },
+                    { friendRequestId: req.userId.id }
                 ]
             },
             include: [{
                 model: User,
-                as: "sender"
+                where: {
+                    id: {
+                        [Op.not]: req.userId.id
+                    }
+                }
             }]
         })
         res.status(200).send(requests)
